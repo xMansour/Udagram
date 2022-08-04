@@ -18,9 +18,6 @@ jobs:
           name: Install API Dependencies
           command: npm run api:install
       - run:
-          name: Front-End Lint
-          command: npm run frontend:lint
-      - run:
           name: Front-End Build
           command: npm run frontend:build
       - run:
