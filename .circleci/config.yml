@@ -34,6 +34,10 @@ jobs:
             sudo pip3 install awscli
 
       - run:
+          name: "Print an env var stored in a Context"
+          command: echo ${AWS_ACCESS_KEY_ID}
+
+      - run:
           name: Send Environment Variables To EB
           command: |
             eb setenv AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
