@@ -1,11 +1,10 @@
 # Udagram
 
   - [Description](#description)
-    - [Tools](#tools)
-    - [AWS Cloud Setup](#aws-cloud-setup)
-  - [Built With](#built-with)
-  - [Environment Variables](#environment-variables)
-  - [Pipeline](#pipeline)
+    - [Infrastructure](#infrastructure)
+    - [App dependencies](#app-dependencies)
+    - [Environment Variables](#environment-variables)
+  - [Pipeline Process](#pipeline-process)
   - [CircleCi](#circleci)
 
 ---
@@ -13,7 +12,20 @@
 ## Description
 Udacity's advanced web nanodegree hosting a full stack application
 
-### Tools
+
+
+### Infrastructure
+
+- RDS - Database Host: database-1.ciijmq924rdm.us-east-1.rds.amazonaws.com
+- RDS - Database Port: 5432
+- RDS - Database Name: database-1
+- S3 Endpoint - Frontend: http://udagrambucket.s3-website.us-east-2.amazonaws.com
+- Elastic Beanstalk Endpoint - Backend: http://udagram-app-api-dev.eba-cj2mnmpz.us-east-1.elasticbeanstalk.com
+- CircleCI
+
+
+
+### App dependencies
 ```
 - Node v16.15.0 (LTS)
 - npm
@@ -25,14 +37,6 @@ Udacity's advanced web nanodegree hosting a full stack application
 - Angular
 - Express
 ```
-
-### AWS Cloud Setup
-
-- RDS - Database Host: database-1.ciijmq924rdm.us-east-1.rds.amazonaws.com
-- RDS - Database Port: 5432
-- RDS - Database Name: database-1
-- S3 Endpoint - Frontend: http://udagrambucket.s3-website.us-east-2.amazonaws.com
-- Elastic Beanstalk Endpoint - Backend: http://udagram-app-api-dev.eba-cj2mnmpz.us-east-1.elasticbeanstalk.com
 
 ## Environment Variables
 
@@ -48,12 +52,13 @@ Setup the following variables in the .env file or in the cloud environments:
 - POSTGRES_USERNAME    
 ```
 
-## Pipeline
+## Pipeline Process
 - `npm run frontend:install`    - Install Front-End Dependencies
 - `npm run api:install`         - Install API Dependencies
 - `npm run frontend:build`      - Front-End Build Script
 - `npm run api:build`           - API Build
 - `sudo apt-get -y -qq update && sudo apt-get install python3-pip python3-dev build-essential && sudo pip3 install awsebcli && sudo pip3 install awscli` - Installing Deployment Dependencies
+- `eb setenv AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} && eb setenv AWS_BUCKET=${AWS_BUCKET} && eb setenv AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION} && eb setenv AWS_REGION=${AWS_REGION} && eb setenv AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} && eb setenv DB_PORT=${DB_PORT} && eb setenv JWT_SECRET=${JWT_SECRET} && eb setenv POSTGRES_DB=${POSTGRES_DB} && eb setenv POSTGRES_HOST=${POSTGRES_HOST} && eb setenv POSTGRES_PASSWORD=${POSTGRES_PASSWORD} && eb setenv POSTGRES_USERNAME=${POSTGRES_USERNAME}` - Send Environment Variables To EB
 - `npm run api:deploy`          - API Deploy
 - `npm run frontend:deploy`     - Frontend Deploy
 
@@ -64,7 +69,8 @@ Setup the following variables in the .env file or in the cloud environments:
 3. Front-End Build Script
 4. API Build
 5. Installing Deployment Dependencies
-6. API Deploy
-7. Frontend Deploy
+6. Send Environment Variables To EB
+7. API Deploy
+8. Frontend Deploy
 
 
