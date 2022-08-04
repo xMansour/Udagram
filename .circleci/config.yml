@@ -34,7 +34,9 @@ jobs:
 
       - run:
           name: API Deploy
-          command: npm run api:deploy
+          command: |
+          echo ${AWS_ACCESS_KEY_ID}
+          npm run api:deploy
             
       - run:
           name: Frontend Deploy
