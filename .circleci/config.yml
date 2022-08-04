@@ -35,7 +35,7 @@ jobs:
       - run:
           name: API Deploy
           command: |
-          echo ${AWS_ACCESS_KEY_ID}
+          echo $(AWS_ACCESS_KEY_ID)
           npm run api:deploy
             
       - run:
