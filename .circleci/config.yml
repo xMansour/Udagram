@@ -34,7 +34,7 @@ jobs:
 
       - run:
           name: API Deploy
-          command: npm run api:deploy
+          command: npm run api:deploy 
             
       - run:
           name: Frontend Deploy
