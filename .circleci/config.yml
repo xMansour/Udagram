@@ -28,13 +28,17 @@ jobs:
           name: Installing Deployment Dependencies
           working_directory: /
           command: |
-            sudo apt-get -y -qq update
-            sudo apt-get install python3-pip python3-dev build-essential
-            sudo pip3 install awsebcli
+            apt-get -y -qq update
+            apt-get install python3-pip python3-dev build-essential
+            pip3 install awsebcli
 
       - run:
-          name: App Deploy
-          command: npm run deploy
+          name: API Deploy
+          command: npm run api:deploy
+            
+      - run:
+          name: Frontend Deploy
+          command: npm run frontend:deploy
             
 workflows:
   udagram:
